@@ -1,13 +1,13 @@
 import {ProfileType} from "../../types/types";
 import {BaseThunkType} from './redux_store';
 import {InferActionsType} from './redux_store';
+import {authAPI} from '../api/api'
+import { useAuth } from "../hooks/auth.hook";
 
 
 let initialState = {
     userId: null as (string | null),
-    login: null as (string | null),
-    email: null as (string | null),
-    authProfile: null as (ProfileType | null)
+    token: null as (string | null)
 }
 
 type InitialStateType = typeof initialState
@@ -21,11 +21,6 @@ export const auth_reducer = (state = initialState, action: ActionTypes): Initial
                 ...state,
                 ...action.data,
             }
-        case 'SET_AUTH_PROFILE':
-            return {
-                ...state,
-                authProfile: action.profile,
-            }
         default:
             return state;
 
@@ -35,12 +30,8 @@ export const auth_reducer = (state = initialState, action: ActionTypes): Initial
 type ActionTypes = InferActionsType< typeof actions>
 
 export const actions = {
-    setAuthUserData: (id: number | null, login: string | null, email: string | null, isAuth: boolean) =>
-        ({type: 'SET_USER_DATA', data: {id, login, email, isAuth}} as const),
-    setAuthProfile: (profile: ProfileType) =>
-        ({type: 'SET_AUTH_PROFILE', profile} as const),
-    setCaptchaUrl: (url: string | null) =>
-        ({type: 'SET_CAPTCHA', payload: url} as const)
+    setAuthUserData: (userId: string, token: string) =>
+        ({type: 'SET_USER_DATA', data: {userId, token}} as const),
 }
 
 
@@ -58,20 +49,16 @@ type ThunkActionTypes = BaseThunkType<ActionTypes>
 //     }
 // }
 
-// export const authLogin = (email: string, password: string, rememberMe: boolean, captcha?: string): ThunkActionTypes => async (dispatch) => {
-//     // let data = await authAPI.login(email, password, rememberMe, captcha)
+export const authSignUp = (email: string, password: string, firstName: string, lastName: string, birthDay: string): ThunkActionTypes => async (dispatch) => {
+    let data = await authAPI.signUp(email, password, firstName, lastName, birthDay)
+}
 
-//     if (data.resultCode === 0){
-//         // dispatch(userAuth())
-//     }
-//     else{
-//         if(data.resultCode === 10){
-//             // dispatch(getCaptchaUrl())
-//         }
-//         let message = data.messages.length > 0 ? data.messages[0] : "Some error";
-
-//     }
-// }
+export const authSignIn = (email: string, password: string): ThunkActionTypes => async (dispatch) => {
+    let data = await authAPI.signIn(email, password)
+    if (data){
+        dispatch(actions.setAuthUserData(data.token, data.userId))
+    }
+}
 
 // }
 // export const authLogout = (): ThunkActionTypes => async (dispatch) => {

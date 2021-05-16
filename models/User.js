@@ -4,13 +4,12 @@ const schema = new Schema({
     profile: {
         firstName: {type: String, required: true},
         lastName: {type: String, required: true},
-        status: {type: String },
-        birthDay: {type: Date, required: true},
+        status: {type: String, default: null },
+        birthDay: {type: String, required: true},
         contacts: {
-            vk: {type: String},
-            website: {type: String},
-            telegram: {type: String},
-            owner: {type: Types.ObjectId, ref: 'User'}
+            vk: {type: String, default: null},
+            website: {type: String, default: null},
+            telegram: {type: String, default: null},
         }
     }, 
     email: {type: String, required: true, unique: true},

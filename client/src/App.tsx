@@ -9,12 +9,14 @@ import {
 import { SignIn } from "./components/AuthPage/SignIn";
 import { useAuth } from "./hooks/auth.hook";
 import { useRoutes } from "./hooks/routes.hook";
+import { useSelector } from "react-redux";
+import { AppStateType } from "./redux/redux_store";
 
 const { Header, Sider, Content, Footer } = Layout;
 export const App = () => {
-  const { token, ready } = useAuth();
+  const AuthReducer = useSelector((state: AppStateType) => state.AuthReducer)
 
-  const isAuthenticated: boolean = !!token;
+  const isAuthenticated: boolean = !!AuthReducer.token;
 
   const routes = useRoutes(isAuthenticated);
 

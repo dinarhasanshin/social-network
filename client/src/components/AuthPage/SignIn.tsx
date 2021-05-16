@@ -7,11 +7,26 @@ import {
   EyeInvisibleOutlined,
 } from "@ant-design/icons";
 import s from "./auth.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
+import { useAuth } from "../../hooks/auth.hook";
+import { AppStateType } from "../../redux/redux_store";
+import { authSignIn } from "../../redux/auth_reducer";
 
+export type SingUpFormType = {
+  email: string;
+  password: string;
+};
 
 export const SignIn = () => {
-  const onFinish = (values: any) => {
-    console.log("Success:", values);
+  const dispatch = useDispatch();
+  const AuthReducer = useSelector((state: AppStateType) => state.AuthReducer);
+  const history = useHistory();
+  const { login } = useAuth();
+
+  const onFinish = async (values: SingUpFormType) => {
+    await dispatch(authSignIn(values.email, values.password));
+    history.push('/profile')
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -29,28 +44,28 @@ export const SignIn = () => {
         <Form.Item>
           <div className={s.logo}>
             <hr />
-            <span>SocialNetwork</span>  
+            <span>SocialNetwork</span>
             <hr />
           </div>
         </Form.Item>
         <Form.Item
-          name="username"
-          rules={[{ required: true, message: "Please input your Username!" }]}
+          name="email"
+          rules={[{ required: true, message: "Пожалуйста введите email!" }]}
         >
           <Input
             prefix={<UserOutlined className="site-form-item-icon" />}
-            placeholder="Username"
+            placeholder="Email"
             size="large"
           />
         </Form.Item>
         <Form.Item
           name="password"
-          rules={[{ required: true, message: "Please input your Password!" }]}
+          rules={[{ required: true, message: "Пожалуйста введите пароль!" }]}
         >
           <Input.Password
             prefix={<LockOutlined className="site-form-item-icon" />}
             type="password"
-            placeholder="Password"
+            placeholder="Пароль"
             size="large"
             iconRender={(visible) =>
               visible ? <EyeTwoTone /> : <EyeInvisibleOutlined />

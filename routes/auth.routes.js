@@ -37,7 +37,7 @@ router.post(
 
         await user.save()
 
-        res.status(201).json({ message: 'Пользователь создан', user })
+        res.status(201).json({ message: 'Пользователь создан', user: user.profile})
 
     }catch (e) {
         res.status(500).json({ message: 'Произошла ошибка' })
@@ -81,7 +81,7 @@ router.post(
                 config.get('jwtSecret'),
                 { expiresIn: '5h' }
             )
-            res.json({ token, userId: user.id})
+            res.json({ token, userId: user.id })
 
         } catch (e) {
             res.status(500).json({message: 'Произошла ошибка'})

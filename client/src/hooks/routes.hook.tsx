@@ -16,6 +16,7 @@ export const useRoutes = (isAuthenticated: boolean) => {
                 <Route path="/messages">
                     /* MessagesPage */
                 </Route>
+                <Redirect to="/profile"/>
             </Switch>
         )
     }

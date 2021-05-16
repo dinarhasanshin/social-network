@@ -5,17 +5,33 @@ import {
   EyeTwoTone,
   EyeInvisibleOutlined,
   SolutionOutlined,
-  MailOutlined
+  MailOutlined,
 } from "@ant-design/icons";
 import s from "./auth.module.css";
+import { useDispatch, useSelector } from "react-redux";
+import { authSignUp } from "../../redux/auth_reducer";
+import { useAuth } from "../../hooks/auth.hook";
+import { AppStateType } from "../../redux/redux_store";
+import { useHistory } from "react-router";
 
 export const SignUp = () => {
+
+    const dispatch = useDispatch()
+    const AuthReducer = useSelector((state: AppStateType) => state.AuthReducer)
+    const history = useHistory()
+    const {login} = useAuth()
+
   const onFinish = (fieldsValue: any) => {
     const values = {
       ...fieldsValue,
-      "birthDay": fieldsValue["date-picker"].format("YYYY-MM-DD"),
+      birthDay: fieldsValue["date-picker"].format("YYYY-MM-DD"),
     };
-    //TODO: Отправка POST запроса с данные для регистрации, обратно получаем User 
+    if(values){
+        dispatch(authSignUp(values.email, values.password, values.firstName, values.lastName, values.birthDay))
+        history.push('/signIn')
+    }
+
+    //TODO: Отправка POST запроса с данные для регистрации, обратно получаем User
   };
 
   const onFinishFailed = (errorInfo: any) => {
@@ -69,7 +85,7 @@ export const SignUp = () => {
             },
           ]}
         >
-          <DatePicker size="large" style={{width: '100%'}} />
+          <DatePicker size="large" style={{ width: "100%" }} />
         </Form.Item>
         <Form.Item
           name="email"

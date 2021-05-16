@@ -3,7 +3,7 @@ import {auth_reducer}  from "./auth_reducer";
 import thunkMiddleWare, {ThunkAction} from 'redux-thunk';
 
 let rootReducer = combineReducers({
-    auth: auth_reducer,
+    AuthReducer: auth_reducer,
 });
 
 type RootReducerType = typeof rootReducer // (globalstate: AppStateType) => AppStateType
