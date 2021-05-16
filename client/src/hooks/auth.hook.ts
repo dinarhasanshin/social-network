@@ -1,6 +1,6 @@
 import { useState, useCallback, useEffect } from 'react'
 
-const storageName = 'userData'
+const storageName: any = 'userData'
 
 type localStorageType = {
     userId: string,
@@ -11,6 +11,7 @@ export const useAuth = () => {
     const [ready, setReady] = useState<boolean>(false)
     const [token, setToken] = useState<string | null>(null)
     const [userId, setUserId] = useState<string | null>(null)
+
 
     const login = useCallback((jwtToken: string, id: string) => {
         setToken(jwtToken)
@@ -30,12 +31,15 @@ export const useAuth = () => {
 
 
     useEffect(() => {
-        const data: localStorageType = JSON.parse(localStorage.getItem(storageName))
+        const storage: string | null = localStorage.getItem(storageName)
+        if(storage){
+            const data: localStorageType = JSON.parse(storage)
 
-        if(data && data.token){
-            login(data.token, data.userId)
-        }
-        setReady(true)
+            if(data && data.token){
+                login(data.token, data.userId)
+            }
+            setReady(true)
+        }        
     }, [login])
 
     return { login, logout, token, userId, ready }

@@ -8,13 +8,6 @@ import {
 } from "@ant-design/icons";
 import s from "./auth.module.css";
 
-const layout = {
-  labelCol: { span: 8 },
-  wrapperCol: { span: 6 },
-};
-const tailLayout = {
-  wrapperCol: { offset: 0, span: 6 },
-};
 
 export const SignIn = () => {
   const onFinish = (values: any) => {
@@ -73,7 +66,7 @@ export const SignIn = () => {
           >
             Log in
           </Button>
-          Or <a href="">register now!</a>
+          Or <a href="/signUp">SignUp now!</a>
         </Form.Item>
       </Form>
     </div>

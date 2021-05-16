@@ -1,6 +1,7 @@
 import React from 'react'
 import { Switch, Route, Redirect } from 'react-router-dom'
-import { SignIn } from '../src/components/AuthPage/SignIn'
+import { SignIn } from '../components/AuthPage/SignIn'
+import { SignUp } from '../components/AuthPage/SignUp'
 
 export const useRoutes = (isAuthenticated: boolean) => {
     if(isAuthenticated){
@@ -24,7 +25,7 @@ export const useRoutes = (isAuthenticated: boolean) => {
                 <SignIn />
             </Route>
             <Route path="/signUp">
-                /* SignUp */
+                <SignUp />
             </Route>
             <Redirect to="/signIn"/>
         </Switch>

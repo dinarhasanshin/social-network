@@ -1,18 +1,31 @@
-import React from 'react';
-import './App.less';
-import { Layout, Menu } from 'antd';
+import React, { useState } from "react";
+import "./App.less";
+import { Layout, Menu } from "antd";
 import {
   UserOutlined,
   MessageOutlined,
   UsergroupAddOutlined,
-} from '@ant-design/icons';
-import { SignIn } from './components/AuthPage/SignIn';
+} from "@ant-design/icons";
+import { SignIn } from "./components/AuthPage/SignIn";
+import { useAuth } from "./hooks/auth.hook";
+import { useRoutes } from "./hooks/routes.hook";
 
 const { Header, Sider, Content, Footer } = Layout;
-const App = () => {
+export const App = () => {
+  const { token, ready } = useAuth();
 
-    return (
-      <SignIn />
+  const isAuthenticated: boolean = !!token;
+
+  const routes = useRoutes(isAuthenticated);
+
+  // if (!ready) {
+  //   return <div>Loading...</div>;
+  // }
+
+  return (
+    <>{routes}</>
+    // <SignIn />
+
     //   <Layout>
     //   <Sider
     //     breakpoint="lg"
@@ -46,8 +59,5 @@ const App = () => {
     //     </Content>
     //   </Layout>
     // </Layout>
-    
-    );
-}
-
-export default App;
+  );
+};
