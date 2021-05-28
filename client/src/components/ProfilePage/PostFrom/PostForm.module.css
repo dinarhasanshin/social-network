@@ -1,0 +1,63 @@
+.post_card {
+  display: grid;
+  grid-template-columns: 74px auto 120px;
+  grid-template-rows: 70px 90px;
+  border-radius: 7px;
+  background-color: #fff;
+  margin-bottom: 20px;
+  grid-template-areas:
+    "pct pct pct"
+    "pcim pcin pcb";
+}
+.post_card_title {
+  grid-area: pct;
+  width: 100%;
+  border-top-left-radius: 7px;
+  border-top-right-radius: 7px;
+  padding: 11px 5px 0 10px
+}
+.post_card_title span {
+    font-size: 21px;
+    
+}
+.post_card_title hr {
+    margin-top: 18px;
+    background-color: #f4f4f4;
+    border: 0.5px solid #f4f4f4;
+}
+.post_card_img {
+  grid-area: pcim;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-bottom-left-radius: 7px;
+}
+.post_card_img img {
+  width: 64px;
+  height: auto;
+}
+.post_card_input {
+  grid-area: pcin;
+  display: flex;
+  align-items: center;
+}
+.post_card_input input {
+  height: 100%;
+  width: 100%;
+  font-size: 18px;
+  border: none;
+  outline: none;
+}
+.post_card_btn {
+  grid-area: pcb;
+  border-bottom-right-radius: 7px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+/* .post_card_btn button{
+    border-radius: 7px;
+    background-color: #7B1FA2;
+    border: none;
+    color: white;
+} */

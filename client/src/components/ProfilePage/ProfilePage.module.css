@@ -1,49 +1,167 @@
-.site_layout_content {
-    min-height: 100%;
-    padding: 24px;
-    background: #fff;
-  }
-.logo {
-    float: left;
-    width: 120px;
-    height: 31px;
-    margin: 16px 24px 16px 0;
-    background: rgba(255, 255, 255, 0.3);
-  }
-.logo {
-    float: right;
-    margin: 16px 0 16px 24px;
+.container {
+  min-height: 100%;
+  position: relative;
+  padding: 24px;
+  background: #f0f3f6;
+  min-height: 360px;
+  display: grid;
+  grid-template-rows: 335px 65px;
+  grid-row-gap: 20px;
+  grid-template-areas:
+    "ph"
+    "pm"
+    "pc";
 }
-.layout{
-    height: 100vh;
+.profile_header {
+  position: relative;
+  z-index: 12;
+  display: flex;
+  flex-direction: column;
+  grid-area: "ph";
+  background-color: white;
+  border-radius: 7px;
 }
-.footer{
+.profile_header_background {
+  height: 240px;
+  background-color: green;
+  border-radius: 7px;
+}
+.profile_header_background img {
+  height: 240px;
+  width: 1073px;
+  border-radius: 7px;
+}
+.profile_header_content {
+  height: 95px;
+  border-radius: 7px;
+}
+.profile_header_user {
+  position: absolute;
+  top: 40%;
+  right: calc(50% - 78.5px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  z-index: 10;
+}
+.profile_header_user_img {
+  width: 128px;
+  height: 128px;
+  border-radius: 50%;
+  background-color: yellow;
+  margin-bottom: 10px;
+
+}
+.profile_header_user_img img {
+  width: 128px;
+  height: auto;
+}
+.profile_header_user_name{
+  font-size: 20px;
+}
+.profile_header_content {
+  display: flex;
+  justify-content: space-between;
+  
+}
+.profile_header_content_contacts {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  min-width: 320px;
+  background-color: white;
+  border-radius: 7px;
+}
+.profile_header_content_middle{
+  min-width: 280px;
+}
+.profile_header_content_userData {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  background-color: white;
+  border-radius: 7px;
+  min-width: 320px;
+}
+.content_userData{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  text-align: center;
+  margin-right: 17px;
+}
+.profile_menu{
+    grid-area: pm;
+    background-color: #fff;
+    border-radius: 7px;
+    width: 100%;
+}
+.profile_menu_items{
     display: flex;
+    background-color: #fff;
     justify-content: space-between;
 }
-.header{
-    padding: 0;
-    display: flex;
-    justify-content: flex-end;
-    background-color: #fff;
-    align-items: center;
+
+.profile_content{
+  grid-area: "pc";
+  display: grid;
+  grid-template-columns: 310px auto;
+  grid-column-gap: 20px;
+  grid-template-areas:
+  "lpc rpc"
 }
+
+.profile_content_left{
+  grid-area: 'lpc';
+  background-color: blueviolet;
+  height: 20px;
+}
+
+.profile_content_right{
+  grid-area: 'rpc';
+  background-color: chocolate;
+  height: 700px;
+}
+
+
+.layout {
+  height: 100vh;
+}
+.footer {
+  display: flex;
+  justify-content: space-between;
+}
+.header {
+  padding: 0;
+  display: flex;
+  justify-content: flex-end;
+  background-color: #fff;
+  align-items: center;
+  box-shadow: 0px 0px 8px 0px rgba(34, 60, 80, 0.2);
+  padding-right: 25px;
+}
+.user_drop_down {
+  display: flex;
+  align-items: center;
+}
+
 
 
 
 .site_layout_content_mobile {
-    min-height: 100%;
-    padding: 24px;
-    background: #fff;
-  }
+  min-height: 100%;
+  padding: 24px;
+  background: #fff;
+}
 
-.layout_mobile{
-    height: 100vh;
+.layout_mobile {
+  height: 100vh;
 }
-.footer_mobile{
-    display: flex;
-    justify-content: space-between;
+.footer_mobile {
+  display: flex;
+  justify-content: space-between;
 }
-.header_mobile{
-    padding: 0;
+.header_mobile {
+  padding: 0;
 }
